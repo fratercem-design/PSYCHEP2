@@ -23,3 +23,6 @@ export default auth((req) => {
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
+
+// Export runtime configuration to prevent edge runtime issues
+export const runtime = "nodejs";

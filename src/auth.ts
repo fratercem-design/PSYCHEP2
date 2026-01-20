@@ -10,18 +10,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user }) {
       if (!user.email) return false;
 
-      // Check if user is in staff_users table
-      const staff = await db.query.staffUsers.findFirst({
-        where: eq(staffUsers.email, user.email),
-      });
+      try {
+        // Check if user is in staff_users table
+        const staff = await db.query.staffUsers.findFirst({
+          where: eq(staffUsers.email, user.email),
+        });
 
-      if (staff) {
-        // Add role to user object for session callback
-        // @ts-expect-error - role is a custom property
-        user.role = staff.role;
-        // @ts-expect-error - staffId is a custom property
-        user.staffId = staff.id;
-        return true;
+        if (staff) {
+          // Add role to user object for session callback
+          // @ts-expect-error - role is a custom property
+          user.role = staff.role;
+          // @ts-expect-error - staffId is a custom property
+          user.staffId = staff.id;
+          return true;
+        }
+      } catch (error) {
+        // If database is not available (edge runtime), deny access
+        console.error("Database error during sign in:", error);
+        return false;
       }
 
       return false; // Deny access if not staff
@@ -46,3 +52,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+
+// Export runtime configuration to prevent edge runtime issues
+export const runtime = "nodejs";
