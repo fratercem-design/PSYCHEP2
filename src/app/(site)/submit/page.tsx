@@ -38,7 +38,7 @@ export default function SubmitPage() {
   return (
     <main className="container mx-auto px-4 py-8">
         <div className="flex justify-center mb-8">
-          <Image src="/images/submit-your-stream.png" alt="Submit Your Stream to Psycheverse" width={800} height={200} />
+          <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream to Psycheverse" width={800} height={200} />
         </div>
         <h1 className="text-4xl font-bold text-center mb-8 text-hyper-violet">
         Submit Your Channel
