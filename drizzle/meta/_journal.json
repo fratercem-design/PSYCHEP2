@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1768906958455,
+      "tag": "0000_modern_roland_deschain",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1768914992482,
+      "tag": "0001_living_dreadnoughts",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1768917020370,
+      "tag": "0002_kind_gauntlet",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1768917797248,
+      "tag": "0003_even_doctor_spectrum",
+      "breakpoints": true
+    }
+  ]
+}
