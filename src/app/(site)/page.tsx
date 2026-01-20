@@ -56,14 +56,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-background/80 backdrop-blur-sm border-b border-secondary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image src="/images/eye.png" alt="Eye" width={50} height={50} />
-            <Image src="/images/psycheverse-logo.png" alt="Psycheverse Logo" width={220} height={50} />
+      <header className="bg-background/80 backdrop-blur-sm border-b border-secondary/10 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center relative">
+          <Link href="/" className="flex items-center space-x-4 transform hover:scale-105 transition-transform duration-300">
+            <Image src="/images/eye.png" alt="Eye" width={80} height={80} className="drop-shadow-lg" />
+            <Image src="/images/psycheverse-logo.png" alt="Psycheverse Logo" width={350} height={80} className="drop-shadow-lg" />
           </Link>
-          <Link href="/submit" className="absolute right-4 sm:right-6 lg:right-8 flex items-center">
-            <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={100} height={33} />
+          <Link href="/submit" className="absolute right-4 sm:right-6 lg:right-8 flex items-center hover:scale-110 transition-transform duration-300">
+            <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={150} height={50} className="drop-shadow-lg" />
           </Link>
         </div>
       </header>
