@@ -17,6 +17,14 @@ export default function BlogPage() {
 
   async function loadMorePosts() {
     const morePosts = await db.query.blogPosts.findMany({
+      columns: {
+        slug: true,
+        title: true,
+        excerpt: true,
+        content: true,
+        imageUrl: true,
+        postType: true,
+      },
       orderBy: [desc(blogPosts.createdAt)],
       limit: 6,
       offset: posts.length,

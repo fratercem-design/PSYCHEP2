@@ -16,7 +16,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
       },
       creators: {
         with: {
-          streamer: true,
+          creator: true,
         },
       },
     },
@@ -26,7 +26,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
     notFound();
   }
 
-  const creatorIds = post.creators.map(creator => creator.streamerId);
+  const creatorIds = post.creators.map(creator => creator.creatorId);
 
   return (
     <main className="container mx-auto py-8">

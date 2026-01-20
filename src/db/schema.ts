@@ -285,6 +285,7 @@ export const blogPostsRelations = relations(blogPosts, ({ one, many }) => ({
     references: [users.id],
   }),
   comments: many(blogComments),
+  creators: many(blogPostCreators),
 }));
 
 export const streamersRelations = relations(streamers, ({ many, one }) => ({

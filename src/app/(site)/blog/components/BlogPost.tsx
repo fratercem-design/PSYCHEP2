@@ -5,7 +5,7 @@ export interface BlogPostProps {
   slug: string;
   title: string;
   excerpt: string;
-  content: string;
+  content?: string;
   imageUrl: string;
   postType: 'article' | 'clip';
 }
