@@ -1,7 +1,6 @@
 'use client';
 
-import Link from "next/link";
-import { ExternalLink, User, Radio } from "lucide-react";
+import { ExternalLink, Radio } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -51,26 +50,25 @@ export function StreamerCard({
         ) : (
           <div className="relative w-full h-full">
             {avatarUrl ? (
-              <>
-                <img
-                  src={avatarUrl}
-                  alt={`${displayName} avatar`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 blur-sm opacity-70"
-                />
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
-                  <span className="text-white font-bold text-sm uppercase tracking-widest">
-                    {isLive ? "Live Streaming!" : "Offline"}
-                  </span>
-                </div>
-              </>
+              <Image
+                src={avatarUrl}
+                alt={`${displayName} avatar`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105 blur-sm opacity-70"
+              />
             ) : (
               <Image
                 src="/images/cult-of-psyche-offline.png"
                 alt="Streamer Offline"
                 fill
-                className="object-cover"
+                className={cn("object-cover", displayName.toLowerCase() === 'cultofpsyche' ? "object-bottom" : "object-center")}
               />
             )}
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
+              <span className="text-white font-bold text-sm uppercase tracking-widest">
+                {isLive ? "Live Streaming!" : "Offline"}
+              </span>
+            </div>
           </div>
         )}
 

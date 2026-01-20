@@ -17,30 +17,20 @@ export default function BannerAdRotator() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchActiveAds = async () => {
+      try {
+        const response = await fetch('/api/ads/rotation');
+        const data = await response.json();
+        setAds(data.ads || []);
+      } catch (error) {
+        console.error('Failed to fetch ads:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchActiveAds();
   }, []);
-
-  useEffect(() => {
-    if (ads.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentAdIndex((prev) => (prev + 1) % ads.length);
-      }, 5000); // Rotate every 5 seconds
-
-      return () => clearInterval(interval);
-    }
-  }, [ads.length]);
-
-  const fetchActiveAds = async () => {
-    try {
-      const response = await fetch('/api/ads/rotation');
-      const data = await response.json();
-      setAds(data.ads || []);
-      setLoading(false);
-    } catch (error) {
-      console.error('Failed to fetch ads:', error);
-      setLoading(false);
-    }
-  };
 
   const handleAdClick = async (adId: number) => {
     try {

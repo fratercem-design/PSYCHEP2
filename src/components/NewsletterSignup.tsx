@@ -30,14 +30,14 @@ export const NewsletterSignup = () => {
         setStatus('error');
         setMessage(data.error || 'Something went wrong.');
       }
-    } catch (error) {
+    } catch (_error) {
       setStatus('error');
       setMessage('Something went wrong. Please try again.');
     }
   };
 
   return (
-    <div className="bg-midnight/50 border border-hyper-violet/20 rounded-lg p-6 max-w-md mx-auto mt-12">
+    <div className="bg-midnight/50 border-2 border-hyper-violet rounded-lg p-6 max-w-md mx-auto mt-12 shadow-lg shadow-hyper-violet/20">
       <h3 className="text-xl font-bold text-neo-mint mb-2">Join the Psycheverse</h3>
       <p className="text-fog mb-4 text-sm">
         Get updates on new streamers, features, and events.

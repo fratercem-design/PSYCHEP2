@@ -28,18 +28,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ session, token }) {
       if (session.user && token.role) {
-        // @ts-ignore
+        // @ts-expect-error -- session.user is not extended with role
         session.user.role = token.role;
-        // @ts-ignore
+        // @ts-expect-error -- session.user is not extended with staffId
         session.user.staffId = token.staffId;
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
-        // @ts-ignore
+        // @ts-expect-error
         token.role = user.role;
-        // @ts-ignore
+        // @ts-expect-error
         token.staffId = user.staffId;
       }
       return token;

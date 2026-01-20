@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
-import { ads } from '@/db/schema';
-import { eq, and, gte } from 'drizzle-orm';
+import { ads, adStatusEnum } from '@/db/schema';
+import { eq } from 'drizzle-orm';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     
     const allAds = await db.query.ads.findMany({
-      where: status ? eq(ads.status, status as any) : undefined,
+      where: status ? eq(ads.status, status as (typeof adStatusEnum.enumValues)[number]) : undefined,
     });
     
     return NextResponse.json({ ads: allAds });

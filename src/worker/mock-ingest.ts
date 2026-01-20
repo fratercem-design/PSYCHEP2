@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { db } from "../db";
-import { liveStates, streamers } from "../db/schema";
+import { liveStates } from "../db/schema";
 import { eq } from "drizzle-orm";
 
 async function main() {

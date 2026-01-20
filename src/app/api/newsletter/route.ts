@@ -6,6 +6,14 @@ mailchimp.setConfig({
   server: 'us1', // Replace 'us1' with your server prefix if different
 });
 
+interface MailchimpError {
+  response?: {
+    body?: {
+      title?: string;
+    };
+  };
+}
+
 export async function POST(request: Request) {
   const { email } = await request.json();
 
@@ -20,10 +28,11 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ message: 'Successfully subscribed!' }, { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Mailchimp error:', error);
+    const mailchimpError = error as MailchimpError;
     return NextResponse.json(
-      { error: error.response?.body?.title || 'Something went wrong' },
+      { error: mailchimpError.response?.body?.title || 'Something went wrong' },
       { status: 500 }
     );
   }

@@ -5,7 +5,7 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const isOnAdmin = req.nextUrl.pathname.startsWith("/admin");
   
-  // @ts-ignore
+  // @ts-expect-error - req.auth is not extended with user
   const isStaff = req.auth?.user?.role === "admin" || req.auth?.user?.role === "mod";
 
   if (isOnAdmin) {

@@ -23,6 +23,6 @@ try {
   // Check Windows environment variables
   const envVars = execSync('set DATABASE_URL', { encoding: 'utf8' }).toString();
   console.log('System DATABASE_URL:', envVars.trim());
-} catch (error) {
+} catch (_error) {
   console.log('No system DATABASE_URL found or error accessing it');
 }

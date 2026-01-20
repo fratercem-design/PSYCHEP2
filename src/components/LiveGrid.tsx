@@ -22,8 +22,13 @@ export async function LiveGrid() {
     },
   });
 
+  // Filter out the "Psyche" streamer before sorting
+  const filteredStreamers = streamersData.filter(
+    (streamer) => streamer.displayName.toLowerCase() !== 'psyche'
+  );
+
   // Sort: "Cult of Psyche" channel first, then live, then alphabetical
-  const sortedStreamers = streamersData.sort((a, b) => {
+  const sortedStreamers = filteredStreamers.sort((a, b) => {
     const aIsCultOfPsyche = a.displayName.toLowerCase() === 'cultofpsyche';
     const bIsCultOfPsyche = b.displayName.toLowerCase() === 'cultofpsyche';
 
