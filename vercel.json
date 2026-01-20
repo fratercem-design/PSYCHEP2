@@ -4,5 +4,7 @@
       "path": "/api/injest",
       "schedule": "0 0 * * *"
     }
-  ]
+  ],
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install"
 }
