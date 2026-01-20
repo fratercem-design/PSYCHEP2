@@ -17,9 +17,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       if (staff) {
         // Add role to user object for session callback
-        // @ts-ignore
+        // @ts-expect-error - role is a custom property
         user.role = staff.role;
-        // @ts-ignore
+        // @ts-expect-error - staffId is a custom property
         user.staffId = staff.id;
         return true;
       }
@@ -37,9 +37,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async jwt({ token, user }) {
       if (user) {
-        // @ts-expect-error
+        // @ts-expect-error - role is a custom property
         token.role = user.role;
-        // @ts-expect-error
+        // @ts-expect-error - staffId is a custom property
         token.staffId = user.staffId;
       }
       return token;

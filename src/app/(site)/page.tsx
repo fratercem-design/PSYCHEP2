@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { LiveGrid } from "@/components/LiveGrid";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { Rss } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
@@ -55,13 +56,13 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <header className="bg-background/80 backdrop-blur-sm border-b border-secondary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
-          <a href="/" className="flex items-center space-x-2">
-            <img src="/images/eye.png" alt="Eye" width={50} height={50} />
-            <img src="/images/psycheverse-logo.png" alt="Psycheverse Logo" width={220} height={50} />
-          </a>
-          <a href="/submit" className="absolute right-4 sm:right-6 lg:right-8 flex items-center">
-            <img src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={100} height={33} />
-          </a>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image src="/images/eye.png" alt="Eye" width={50} height={50} />
+            <Image src="/images/psycheverse-logo.png" alt="Psycheverse Logo" width={220} height={50} />
+          </Link>
+          <Link href="/submit" className="absolute right-4 sm:right-6 lg:right-8 flex items-center">
+            <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={100} height={33} />
+          </Link>
         </div>
       </header>
 

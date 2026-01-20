@@ -30,7 +30,7 @@ export const NewsletterSignup = () => {
         setStatus('error');
         setMessage(data.error || 'Something went wrong.');
       }
-    } catch (_error) {
+    } catch {
       setStatus('error');
       setMessage('Something went wrong. Please try again.');
     }

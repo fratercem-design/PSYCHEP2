@@ -2,6 +2,7 @@
 import { db } from "@/db";
 import { submissions, ads } from "@/db/schema";
 import { approveSubmission, rejectSubmission, approveAd, rejectAd, deleteAd } from "./actions";
+import Image from "next/image";
 
 const AdminPage = async () => {
   const allSubmissions = await db.select().from(submissions);
@@ -66,7 +67,7 @@ const AdminPage = async () => {
               <tr key={ad.id}>
                 <td className="py-2 px-4 border-b">{ad.title}</td>
                 <td className="py-2 px-4 border-b">
-                  <img src={ad.imageUrl} alt={ad.title} className="w-32 h-auto" />
+                  <Image src={ad.imageUrl} alt={ad.title} width={128} height={72} className="w-32 h-auto" />
                 </td>
                 <td className="py-2 px-4 border-b">
                   <a href={ad.linkUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">

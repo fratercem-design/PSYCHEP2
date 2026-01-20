@@ -3,7 +3,7 @@ import { db } from '@/db';
 import { ads } from '@/db/schema';
 import { eq, and, gte, sql } from 'drizzle-orm';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const activeAds = await db.select()
       .from(ads)

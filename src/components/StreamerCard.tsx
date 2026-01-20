@@ -42,10 +42,11 @@ export function StreamerCard({
       {/* Thumbnail Area */}
       <div className="relative aspect-video bg-muted flex items-center justify-center overflow-hidden">
         {isLive && isValidThumbnail ? (
-          <img
+          <Image
             src={thumbnailUrl}
             alt={`${displayName} thumbnail`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="relative w-full h-full">

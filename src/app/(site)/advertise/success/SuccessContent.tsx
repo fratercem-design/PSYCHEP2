@@ -22,10 +22,10 @@ export default function SuccessContent() {
       </div>
 
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-        <h2 className="text-lg font-semibold mb-2">What's Next?</h2>
+        <h2 className="text-lg font-semibold mb-2">What&apos;s Next?</h2>
         <ul className="text-left text-sm text-blue-700 space-y-2">
           <li>• Your ad will be reviewed by our team</li>
-          <li>• You'll receive an email when your ad goes live</li>
+          <li>• You&apos;ll receive an email when your ad goes live</li>
           <li>• Your banner will start rotating on our platform</li>
           <li>• You can track performance in your dashboard</li>
         </ul>
