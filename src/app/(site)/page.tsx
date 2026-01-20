@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export async function generateMetadata(): Promise<Metadata> {
   const streamers = await db.query.streamers.findMany({
     with: {

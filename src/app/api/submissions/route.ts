@@ -1,30 +1,40 @@
-// src/app/api/submissions/route.ts
-
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
-import { submissions } from "@/db/schema";
-import { NextResponse } from "next/server";
+import { blogSubmissions } from "@/db/schema";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { displayName, youtubeHandle, twitchHandle, kickHandle } = await request.json();
+    const body = await request.json();
+    const { title, content, excerpt, submitterName, submitterEmail, postType, imageUrl } = body;
 
-    if (!displayName || (!youtubeHandle && !twitchHandle && !kickHandle)) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    // Basic validation
+    if (!title || !content || !excerpt || !submitterName || !submitterEmail) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
-    const newSubmission = await db
-      .insert(submissions)
-      .values({
-        displayName,
-        youtubeHandle,
-        twitchHandle,
-        kickHandle,
-      })
-      .returning();
+    // Insert the submission into the database
+    const submission = await db.insert(blogSubmissions).values({
+      title,
+      content,
+      excerpt,
+      submitterName,
+      submitterEmail,
+      postType: postType || "article",
+      imageUrl: imageUrl || null,
+    }).returning();
 
-    return NextResponse.json(newSubmission[0], { status: 201 });
+    return NextResponse.json(
+      { message: "Submission received", submission: submission[0] },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error("Error creating submission:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error("Error submitting post:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

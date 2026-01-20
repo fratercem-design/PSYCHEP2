@@ -40,6 +40,76 @@ export const streamers = pgTable("streamers", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const users = pgTable("users", {
+  id: text("id").primaryKey(),
+  name: text("name"),
+  email: text("email").notNull(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: text("image"),
+});
+
+
+
+export const blogComments = pgTable("blog_comments", {
+  id: serial("id").primaryKey(),
+  postId: integer("post_id").notNull().references(() => blogPosts.id),
+  authorId: text("author_id").notNull().references(() => users.id),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+
+
+
+export const postTypeEnum = pgEnum("post_type", ["article", "clip"]);
+
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  imageUrl: text("image_url").notNull(),
+  authorId: text("author_id").notNull().references(() => users.id),
+  postType: postTypeEnum("post_type").default("article").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const blogPostTags = pgTable(
+  "blog_post_tags",
+  {
+    postId: integer("post_id")
+      .notNull()
+      .references(() => blogPosts.id, { onDelete: "cascade" }),
+    tagId: integer("tag_id")
+      .notNull()
+      .references(() => tags.id, { onDelete: "cascade" }),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.postId, t.tagId] }),
+  })
+);
+
+export const blogPostCreators = pgTable(
+  "blog_post_creators",
+  {
+    postId: integer("post_id")
+      .notNull()
+      .references(() => blogPosts.id, { onDelete: "cascade" }),
+    creatorId: integer("creator_id")
+      .notNull()
+      .references(() => streamers.id, { onDelete: "cascade" }),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.postId, t.creatorId] }),
+  })
+);
+
+
+
+
 export const streamerAccounts = pgTable(
   "streamer_accounts",
   {
@@ -153,7 +223,69 @@ export const ads = pgTable("ads", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const blogSubmissions = pgTable("blog_submissions", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt").notNull(),
+  imageUrl: text("image_url"),
+  postType: postTypeEnum("post_type").default("article").notNull(),
+  submitterName: text("submitter_name").notNull(),
+  submitterEmail: text("submitter_email").notNull(),
+  status: submissionStatusEnum("status").default("pending").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Relations
+
+export const usersRelations = relations(users, ({ many }) => ({
+  posts: many(blogPosts),
+  comments: many(blogComments),
+  tags: many(blogPostTags),
+  creators: many(blogPostCreators),
+}));
+
+export const blogPostTagsRelations = relations(blogPostTags, ({ one }) => ({
+  post: one(blogPosts, {
+    fields: [blogPostTags.postId],
+    references: [blogPosts.id],
+  }),
+  tag: one(tags, {
+    fields: [blogPostTags.tagId],
+    references: [tags.id],
+  }),
+}));
+
+export const blogPostCreatorsRelations = relations(blogPostCreators, ({ one }) => ({
+  post: one(blogPosts, {
+    fields: [blogPostCreators.postId],
+    references: [blogPosts.id],
+  }),
+  creator: one(streamers, {
+    fields: [blogPostCreators.creatorId],
+    references: [streamers.id],
+  }),
+}));
+
+export const blogCommentsRelations = relations(blogComments, ({ one }) => ({
+  author: one(users, {
+    fields: [blogComments.authorId],
+    references: [users.id],
+  }),
+  post: one(blogPosts, {
+    fields: [blogComments.postId],
+    references: [blogPosts.id],
+  }),
+}));
+
+export const blogPostsRelations = relations(blogPosts, ({ one, many }) => ({
+  author: one(users, {
+    fields: [blogPosts.authorId],
+    references: [users.id],
+  }),
+  comments: many(blogComments),
+}));
 
 export const streamersRelations = relations(streamers, ({ many, one }) => ({
   accounts: many(streamerAccounts),
