@@ -52,6 +52,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
-
-// Export runtime configuration to prevent edge runtime issues
-export const runtime = "nodejs";
