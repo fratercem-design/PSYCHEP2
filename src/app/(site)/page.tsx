@@ -5,6 +5,8 @@ import { Rss } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { auth } from "@/auth";
+import { AuthButton } from "@/components/AuthButton";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -53,7 +55,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+  const isLoggedIn = !!session?.user;
+
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-background/80 backdrop-blur-sm border-b border-secondary/10 py-8">
@@ -62,9 +67,20 @@ export default function Home() {
             <Image src="/images/eye.png" alt="Eye" width={120} height={120} className="drop-shadow-lg" />
             <Image src="/images/psycheverse-logo.png" alt="Psycheverse Logo" width={450} height={100} className="drop-shadow-lg" />
           </Link>
-          <Link href="/submit" className="absolute right-4 sm:right-6 lg:right-8 flex items-center hover:scale-110 transition-transform duration-300">
-            <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={120} height={40} className="drop-shadow-lg" />
-          </Link>
+          <div className="absolute right-4 sm:right-6 lg:right-8 flex items-center space-x-4">
+            {isLoggedIn && (
+              <Link
+                href="/admin"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Admin
+              </Link>
+            )}
+            <AuthButton isLoggedIn={isLoggedIn} />
+            <Link href="/submit" className="flex items-center hover:scale-110 transition-transform duration-300">
+              <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={120} height={40} className="drop-shadow-lg" />
+            </Link>
+          </div>
         </div>
       </header>
 
