@@ -8,10 +8,9 @@ export default async function BlogPage() {
   const initialPosts = await getBlogPosts(0, 6);
 
   return (
-    <BlogClient 
-      // @ts-expect-error - types might mismatch slightly
-      initialPosts={initialPosts} 
-      sidebar={<TrendingSidebar />} 
+    <BlogClient
+      initialPosts={initialPosts}
+      sidebar={<TrendingSidebar />}
     />
   );
 }
