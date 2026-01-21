@@ -1,13 +1,10 @@
-import NextAuth from "next-auth";
-import { authConfig } from "./auth.config";
+import { auth } from "./auth";
 import { NextResponse } from "next/server";
-
-const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const isOnAdmin = req.nextUrl.pathname.startsWith("/admin");
-  
+
   // @ts-expect-error - req.auth is not extended with user
   const isStaff = req.auth?.user?.role === "admin" || req.auth?.user?.role === "mod";
 

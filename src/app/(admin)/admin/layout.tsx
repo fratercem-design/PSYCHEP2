@@ -8,9 +8,8 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-
   if (!session?.user) {
-    redirect("/api/auth/signin");
+    redirect("/auth/signin");
   }
 
   // Double check role here (middleware handles it too, but good for safety)
