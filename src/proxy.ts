@@ -2,6 +2,9 @@ import { auth } from "./auth";
 import { NextResponse } from "next/server";
 
 export default auth((req) => {
+  console.log("[Proxy] Request URL:", req.nextUrl.pathname);
+  console.log("[Proxy] Auth object:", JSON.stringify(req.auth, null, 2));
+
   const isLoggedIn = !!req.auth;
   const isOnAdmin = req.nextUrl.pathname.startsWith("/admin");
 
