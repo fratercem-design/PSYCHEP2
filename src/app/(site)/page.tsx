@@ -110,6 +110,20 @@ export default async function Home() {
         
         <NewsletterSignup />
       </main>
+
+      <footer className="bg-background border-t border-secondary/10 py-8 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} Psycheverse. All rights reserved.</p>
+          <div className="flex space-x-6">
+            <Link href="/admin" className="hover:text-primary transition-colors">
+              Admin Access
+            </Link>
+            <Link href="/blog" className="hover:text-primary transition-colors">
+              Blog
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
