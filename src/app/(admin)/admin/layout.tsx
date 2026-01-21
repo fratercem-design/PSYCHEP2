@@ -19,7 +19,9 @@ export default async function AdminLayout({
   // but we can add a check here if we extend the session type.
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
+    <html lang="en">
+      <body>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
       {/* Sidebar */}
       <aside className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
         <div className="p-6">
@@ -39,6 +41,12 @@ export default async function AdminLayout({
             Streamers
           </Link>
           <Link
+            href="/admin/submissions"
+            className="block px-6 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
+          >
+            Blog Submissions
+          </Link>
+          <Link
             href="/"
             className="block px-6 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
           >
@@ -52,5 +60,7 @@ export default async function AdminLayout({
         {children}
       </main>
     </div>
+        </body>
+    </html>
   );
 }

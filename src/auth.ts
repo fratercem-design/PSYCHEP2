@@ -8,7 +8,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   callbacks: {
     ...authConfig.callbacks,
-    async signIn({ user }) {
+    async signIn({ user, account }) {
+      // Allow credentials provider to bypass staff check
+      if (account?.provider === "credentials") {
+        return true;
+      }
+
       if (!user.email) return false;
 
       try {

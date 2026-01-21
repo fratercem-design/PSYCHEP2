@@ -1,8 +1,31 @@
 import Google from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
-  providers: [Google],
+  providers: [
+    Google,
+    Credentials({
+      name: "credentials",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        // Hardcoded admin credentials
+        if (credentials?.username === "psycheadmin" && credentials?.password === "psyche666") {
+          return {
+            id: "1",
+            name: "Admin",
+            email: "admin@psycheverse.org",
+            role: "admin",
+            staffId: 1
+          };
+        }
+        return null;
+      }
+    })
+  ],
   callbacks: {
     async session({ session, token }) {
       if (session.user && token.role) {
