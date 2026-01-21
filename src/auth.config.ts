@@ -15,8 +15,11 @@ export const authConfig = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // Hardcoded admin credentials
-        if (credentials?.username === "psycheadmin" && credentials?.password === "psyche666") {
+        // Use environment variables for admin credentials
+        const adminUsername = process.env.ADMIN_USERNAME;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+        
+        if (credentials?.username === adminUsername && credentials?.password === adminPassword) {
           return {
             id: "1",
             name: "Admin",

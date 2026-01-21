@@ -10,8 +10,8 @@ export async function proxy(req: NextRequest) {
   
   // Check if user is authenticated
   if (!session) {
-    // Redirect to login page if not authenticated
-    return NextResponse.redirect(new URL("/login", req.url));
+    // Redirect to signin page if not authenticated
+    return NextResponse.redirect(new URL("/auth/signin", req.url));
   }
   
   // Return null to continue with the request if authenticated
