@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
  
 // Proxy function for Next.js 16 - handles authentication for admin routes
 export function proxy(req: NextRequest) {
-  // req.auth is available here
+  // req.auth is available here - fixed TypeScript type annotation
   console.log("ROUTE: ", req.nextUrl.pathname);
   console.log("AUTH OBJECT: ", (req as any).auth);
   return auth(req as any);
