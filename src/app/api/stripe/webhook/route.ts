@@ -4,11 +4,11 @@ import { db } from '@/db';
 import { ads } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-12-15.clover',
-});
-
 export async function POST(request: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2025-12-15.clover',
+  });
+  
   const body = await request.text();
   const sig = request.headers.get('stripe-signature')!;
 
