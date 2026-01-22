@@ -1,0 +1,583 @@
+[
+  {
+    "id": 18,
+    "displayName": "cultofpsyche",
+    "slug": "cultofpsyche",
+    "avatarUrl": null,
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T13:47:40.316Z",
+    "updatedAt": "2026-01-20T13:47:40.316Z",
+    "accounts": [],
+    "liveState": null
+  },
+  {
+    "id": 11,
+    "displayName": "Psyche",
+    "slug": "psyche",
+    "avatarUrl": "https://yt3.ggpht.com/YDI_OU_eTO78bsAs9eb8lfm9f58V86r524o7Sbcjm39SVpSG4zoMTkVG897MO2_iE_EIDh1HOg=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": "Owner Channel",
+    "createdAt": "2026-01-20T12:24:32.532Z",
+    "updatedAt": "2026-01-20T12:24:32.532Z",
+    "accounts": [
+      {
+        "id": 11,
+        "streamerId": 11,
+        "platformId": 2,
+        "channelId": "UCWw3dB8Fj_wsG4YFMMznqyw",
+        "channelUrl": "https://youtube.com/channel/UCWw3dB8Fj_wsG4YFMMznqyw",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 11,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.506Z"
+    }
+  },
+  {
+    "id": 12,
+    "displayName": "HotMess Summer  💜",
+    "slug": "hotmesssummer",
+    "avatarUrl": "https://yt3.ggpht.com/eiH2HU_y1aEFHAOFvSIU0ErKvVMQS6z-aLTKC9ENXUCrf43NYwouRYXDdhXfYNvznMdXIo4m9Aw=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T12:42:45.549Z",
+    "updatedAt": "2026-01-20T12:42:45.549Z",
+    "accounts": [
+      {
+        "id": 12,
+        "streamerId": 12,
+        "platformId": 2,
+        "channelId": "UCtMmZLpM9vfRgFXLXNDC6qw",
+        "channelUrl": "https://youtube.com/channel/UCtMmZLpM9vfRgFXLXNDC6qw",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 12,
+      "platformId": 2,
+      "isLive": true,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": "https://i.ytimg.com/vi/yYrRPc3tRbI/hqdefault_live.jpg",
+      "updatedAt": "2026-01-22T00:16:57.618Z"
+    }
+  },
+  {
+    "id": 13,
+    "displayName": "DJ Electra Fry",
+    "slug": "djelectrafrye",
+    "avatarUrl": "https://yt3.ggpht.com/PE7SE4qzJt0NkUfG94nO0dWcq9nDgFirQDKQZXmg4UqX5v9a0RLkak23N72JqWxNRRcfvMFyzqk=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T12:42:46.193Z",
+    "updatedAt": "2026-01-20T12:42:46.193Z",
+    "accounts": [
+      {
+        "id": 13,
+        "streamerId": 13,
+        "platformId": 2,
+        "channelId": "UC5BaeOwTxjvO7p_UpCPpPKw",
+        "channelUrl": "https://youtube.com/channel/UC5BaeOwTxjvO7p_UpCPpPKw",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 13,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.510Z"
+    }
+  },
+  {
+    "id": 14,
+    "displayName": "Danny Stranger",
+    "slug": "dannystranger87",
+    "avatarUrl": "https://yt3.ggpht.com/JPOnsRFTuzgG5TGpN-MVZoDiH-9JvU245TZqlwWiFCyXg7jQfrCCB2U8S76n_0eSqZEiWSOd=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T12:42:46.631Z",
+    "updatedAt": "2026-01-20T12:42:46.631Z",
+    "accounts": [
+      {
+        "id": 14,
+        "streamerId": 14,
+        "platformId": 2,
+        "channelId": "UCBMvTqdjOBuIkXU-QhLFlSg",
+        "channelUrl": "https://youtube.com/channel/UCBMvTqdjOBuIkXU-QhLFlSg",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 14,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.611Z"
+    }
+  },
+  {
+    "id": 15,
+    "displayName": "D Oceans' Deep Woo",
+    "slug": "doceansdeepwoo2532",
+    "avatarUrl": "https://yt3.ggpht.com/qZjjo8E_A60Su4gWL73FhQ5PP6UfJnVwgWkDTwWOcbylmnpNFz2rs14cYPcwwSasPVHeOVYQDhU=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T12:42:47.077Z",
+    "updatedAt": "2026-01-20T12:42:47.077Z",
+    "accounts": [
+      {
+        "id": 15,
+        "streamerId": 15,
+        "platformId": 2,
+        "channelId": "UCH75-7VDX6K6xDiz44F44Bg",
+        "channelUrl": "https://youtube.com/channel/UCH75-7VDX6K6xDiz44F44Bg",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 15,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.718Z"
+    }
+  },
+  {
+    "id": 16,
+    "displayName": "Money420",
+    "slug": "m0n3y420",
+    "avatarUrl": "https://yt3.ggpht.com/TU7TBDzsRwcSdBAkeH9N-rg--0RLgBrqvPCAjzioAoaqc-tDDHQEW2MnNsCSwnBFGdAXLiiVqGM=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T12:42:47.532Z",
+    "updatedAt": "2026-01-20T12:42:47.532Z",
+    "accounts": [
+      {
+        "id": 16,
+        "streamerId": 16,
+        "platformId": 2,
+        "channelId": "UC1TtoOcVsd5o-zFy_sUF9Lg",
+        "channelUrl": "https://youtube.com/channel/UC1TtoOcVsd5o-zFy_sUF9Lg",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 16,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.714Z"
+    }
+  },
+  {
+    "id": 17,
+    "displayName": "Chona Adventure Vlog",
+    "slug": "chonaadventurevlogs",
+    "avatarUrl": "https://yt3.ggpht.com/QRIzD13BkhFjPZivjfcwczjZr43wWC-6QAE-C8n94hhauTOpr-7_AVEc3DbAyhI_kmql3y63=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T12:44:18.420Z",
+    "updatedAt": "2026-01-20T12:44:18.420Z",
+    "accounts": [
+      {
+        "id": 17,
+        "streamerId": 17,
+        "platformId": 2,
+        "channelId": "UCNdmxQIOR-ut_KmnQoGh7Zg",
+        "channelUrl": "https://youtube.com/channel/UCNdmxQIOR-ut_KmnQoGh7Zg",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 17,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.593Z"
+    }
+  },
+  {
+    "id": 19,
+    "displayName": "heytherespunky",
+    "slug": "heytherespunky",
+    "avatarUrl": "https://yt3.ggpht.com/iUF9I_N5Q-TC9yPd-4xggzry1In7qIED1Q0E3P2KcgfKfj6oyjcZ1sMP_6dM4cFlHhsAndLz=s800-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T13:47:43.145Z",
+    "updatedAt": "2026-01-20T13:47:43.145Z",
+    "accounts": [
+      {
+        "id": 18,
+        "streamerId": 19,
+        "platformId": 2,
+        "channelId": "UCBRssHzATsGNqlZJrgwCI0Q",
+        "channelUrl": "https://www.youtube.com/channel/UCBRssHzATsGNqlZJrgwCI0Q",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": null
+  },
+  {
+    "id": 20,
+    "displayName": "The Kate Show",
+    "slug": "thekateshow420",
+    "avatarUrl": "https://yt3.ggpht.com/UOCWSTtbVJrSP4z7rAv6bGCa7vZydoI6uF_RwCD5S4g41Taxs315q0E2Gwws4SSPeWZ5xeLzGQ=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T20:25:09.919Z",
+    "updatedAt": "2026-01-20T20:25:09.919Z",
+    "accounts": [],
+    "liveState": null
+  },
+  {
+    "id": 21,
+    "displayName": "Queen Natalie's looking for truth channel",
+    "slug": "karaokequeen82",
+    "avatarUrl": "https://yt3.ggpht.com/Z9YK4zn3eZMi__f1SrIOxxYGyFTRnskklpXkAC3U5VSLUYqxnpjrCX2BwoPGdYTGyB4dHS8C=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-20T20:28:34.403Z",
+    "updatedAt": "2026-01-20T20:28:34.403Z",
+    "accounts": [],
+    "liveState": null
+  },
+  {
+    "id": 22,
+    "displayName": "Talk Your Ish",
+    "slug": "TalkYourIsh69",
+    "avatarUrl": "https://yt3.googleusercontent.com/rPh9Y3T1_r9l1nSoai9WVTFTey_F8iC6MqN0xD2Ul1xulsrEQIsYtx6dZJI5XuQfZmx0qrgC=s160-c-k-c0x00ffffff-no-rj",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": "Summer's Drama Channel",
+    "createdAt": "2026-01-20T23:26:38.119Z",
+    "updatedAt": "2026-01-20T23:26:38.119Z",
+    "accounts": [
+      {
+        "id": 19,
+        "streamerId": 22,
+        "platformId": 2,
+        "channelId": "UCMHqbR5gBQH9Tp1Ip4jQjWA",
+        "channelUrl": "https://youtube.com/channel/UCMHqbR5gBQH9Tp1Ip4jQjWA",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": null
+  },
+  {
+    "id": 23,
+    "displayName": "Capricorn Soul Tribe Tarot",
+    "slug": "capricorn-soul-tribe",
+    "avatarUrl": "https://yt3.ggpht.com/8oQQRdg4PLs-iMpW4uMPRF9KUZxJv2aXVc0LBEnHcszD0LZ9ab3sJNYDTLSLx5HxYwDZEoRsrQ=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-21T10:04:53.406Z",
+    "updatedAt": "2026-01-21T10:04:53.406Z",
+    "accounts": [
+      {
+        "id": 20,
+        "streamerId": 23,
+        "platformId": 2,
+        "channelId": "UCOr8G3olZ4AP6mNSato6cjQ",
+        "channelUrl": "https://youtube.com/channel/UCOr8G3olZ4AP6mNSato6cjQ",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 23,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.633Z"
+    }
+  },
+  {
+    "id": 24,
+    "displayName": "Prairie Winds & Wild Flowers Spiritual Arts",
+    "slug": "prairie-paige",
+    "avatarUrl": "https://yt3.ggpht.com/tTxSYzpPSXuXAwXy4zcbwYjPB3WOheDh7ehZQhWZ5_23G5p6Hj0sgyj-1bpjPztKovWObwEGfic=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-21T10:06:36.649Z",
+    "updatedAt": "2026-01-21T10:06:36.649Z",
+    "accounts": [
+      {
+        "id": 21,
+        "streamerId": 24,
+        "platformId": 2,
+        "channelId": "UCsAdshddX3bvcbdNfCRfNcg",
+        "channelUrl": "https://youtube.com/channel/UCsAdshddX3bvcbdNfCRfNcg",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 24,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.711Z"
+    }
+  },
+  {
+    "id": 27,
+    "displayName": "Spicy Tricialicious",
+    "slug": "spicy-tricialicious",
+    "avatarUrl": "https://yt3.ggpht.com/A_YZc1ldeM2KvuFXG0HVkO-KdZB3RRm54feYKFMqolr-LccU607YZvJQX0YLmQf0FzmFYI1ioo4=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-21T10:07:37.367Z",
+    "updatedAt": "2026-01-21T10:07:37.367Z",
+    "accounts": [
+      {
+        "id": 24,
+        "streamerId": 27,
+        "platformId": 2,
+        "channelId": "UCWVmeAY6Su1ZR16aHe1aZKQ",
+        "channelUrl": "https://youtube.com/channel/UCWVmeAY6Su1ZR16aHe1aZKQ",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 27,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.622Z"
+    }
+  },
+  {
+    "id": 28,
+    "displayName": "Empress Janet",
+    "slug": "empress-janet",
+    "avatarUrl": "https://yt3.ggpht.com/2ld_GC2XPRIaTy18xy__iIeSfEwquCBwzbwYHC1f7OGvlhBGImemIKrAEISVy1D90xMJAZEL=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": "EMPRESS JANET'S WUNDERLAND™👑",
+    "createdAt": "2026-01-21T10:08:18.226Z",
+    "updatedAt": "2026-01-21T10:08:18.226Z",
+    "accounts": [
+      {
+        "id": 25,
+        "streamerId": 28,
+        "platformId": 2,
+        "channelId": "UC1T2iaPYW9qrDY2llVwuu5w",
+        "channelUrl": "https://youtube.com/channel/UC1T2iaPYW9qrDY2llVwuu5w",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 28,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.582Z"
+    }
+  },
+  {
+    "id": 29,
+    "displayName": "Daddy Bigness",
+    "slug": "daddy-bigness",
+    "avatarUrl": "https://yt3.ggpht.com/7IizHvab2G2Vkh3DAK7KgLRMqU44iIzHLvLFzMfB2iJ_e2SlhtaInDitI128kfX38IVNJf5O=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-21T10:11:35.217Z",
+    "updatedAt": "2026-01-21T10:11:35.217Z",
+    "accounts": [
+      {
+        "id": 26,
+        "streamerId": 29,
+        "platformId": 2,
+        "channelId": "UCUx5QxUr9NmZENls-Gw0maQ",
+        "channelUrl": "https://youtube.com/channel/UCUx5QxUr9NmZENls-Gw0maQ",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 29,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.689Z"
+    }
+  },
+  {
+    "id": 30,
+    "displayName": "Elisa Jordana",
+    "slug": "elisa-jordana",
+    "avatarUrl": "https://yt3.ggpht.com/vGuZF4bpnGjdi187AREWjxt7U1Mi6Pon_6rrBozN9BDDMB-eJnCA8bZHhm_QKTHONlHvqPKJ6A=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-21T10:12:18.193Z",
+    "updatedAt": "2026-01-21T10:12:18.193Z",
+    "accounts": [
+      {
+        "id": 27,
+        "streamerId": 30,
+        "platformId": 2,
+        "channelId": "UCLleZKzwtLupGj6fXySbvuA",
+        "channelUrl": "https://youtube.com/channel/UCLleZKzwtLupGj6fXySbvuA",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 30,
+      "platformId": 2,
+      "isLive": true,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": "https://i.ytimg.com/vi/cIGMwlLSC70/hqdefault_live.jpg",
+      "updatedAt": "2026-01-22T00:16:57.655Z"
+    }
+  },
+  {
+    "id": 33,
+    "displayName": "Lomainei",
+    "slug": "lomainei",
+    "avatarUrl": "https://yt3.ggpht.com/8Ooar_UltQ2PtJ7j5HWnpxSMJj_EcdgcgOXvvgb43uNLAdJVcIqbV_u1I6xMuQv_F55DCFXboQ=s800-c-k-c0xffffffff-no-rj-mo",
+    "nsfw": false,
+    "softHidden": false,
+    "notes": null,
+    "createdAt": "2026-01-21T10:16:05.846Z",
+    "updatedAt": "2026-01-21T10:16:05.846Z",
+    "accounts": [
+      {
+        "id": 30,
+        "streamerId": 33,
+        "platformId": 2,
+        "channelId": "UCznH3qiug6qCRj4ltTQCv1g",
+        "channelUrl": "https://youtube.com/channel/UCznH3qiug6qCRj4ltTQCv1g",
+        "platform": {
+          "id": 2,
+          "key": "youtube",
+          "name": "YouTube"
+        }
+      }
+    ],
+    "liveState": {
+      "streamerId": 33,
+      "platformId": 2,
+      "isLive": false,
+      "title": null,
+      "viewerCount": 0,
+      "startedAt": null,
+      "thumbnailUrl": null,
+      "updatedAt": "2026-01-22T00:16:57.676Z"
+    }
+  }
+]

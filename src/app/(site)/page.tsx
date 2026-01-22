@@ -63,23 +63,24 @@ export default async function Home() {
     <div className="min-h-screen bg-background">
       <header className="bg-background/80 backdrop-blur-sm border-b border-secondary/10 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center relative">
-          <Link href="/" className="flex items-center space-x-4 transform hover:scale-105 transition-transform duration-300">
-            <Image src="/images/eye.png" alt="Eye" width={120} height={120} className="drop-shadow-lg" />
-            <Image src="/images/psycheverse-logo.png" alt="Psycheverse Logo" width={450} height={100} className="drop-shadow-lg" />
+          <Link href="/" className="flex items-center justify-center transform hover:scale-105 transition-transform duration-300 w-full">
+            <Image 
+              src="/images/psycheverse-banner.png" 
+              alt="PsycheVerse - Your Ultimate YouTube Live Experience" 
+              width={1200} 
+              height={300} 
+              className="drop-shadow-lg w-full max-w-6xl h-auto rounded-lg"
+              priority
+            />
           </Link>
-          <div className="absolute right-4 sm:right-6 lg:right-8 flex items-center space-x-4">
-            {isLoggedIn && (
-              <Link
-                href="/admin"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Admin
-              </Link>
-            )}
-            <AuthButton isLoggedIn={isLoggedIn} />
-            <Link href="/submit" className="flex items-center hover:scale-110 transition-transform duration-300">
-              <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={120} height={40} className="drop-shadow-lg" />
+          <div className="absolute right-4 sm:right-6 lg:right-8 flex items-center space-x-6">
+            <Link 
+              href="/blog" 
+              className="text-lg font-bold text-foreground hover:text-primary transition-colors tracking-wide uppercase"
+            >
+              Blog
             </Link>
+            <AuthButton isLoggedIn={isLoggedIn} />
           </div>
         </div>
       </header>
@@ -96,6 +97,13 @@ export default async function Home() {
             <Rss className="w-6 h-6 mx-4 text-secondary" />
             <span className="w-16 h-px bg-secondary/30"></span>
           </div>
+          
+          <div className="flex justify-center mb-8">
+            <Link href="/submit" className="flex items-center hover:scale-105 transition-transform duration-300">
+              <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream" width={240} height={80} className="drop-shadow-lg rounded-lg" />
+            </Link>
+          </div>
+
           <h2 className="font-heading text-4xl font-bold text-foreground tracking-tight">
             Signal Detected
           </h2>
@@ -104,6 +112,12 @@ export default async function Home() {
             <br />
             Catch the signal!
           </p>
+          
+          <div className="mt-6">
+            <Link href="/blog" className="text-lg font-bold text-primary hover:text-foreground transition-colors uppercase tracking-widest border-b-2 border-primary pb-1">
+              Read the Blog
+            </Link>
+          </div>
         </div>
         
         <LiveGrid />
@@ -115,9 +129,6 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Psycheverse. All rights reserved.</p>
           <div className="flex space-x-6">
-            <Link href="/admin" className="hover:text-primary transition-colors">
-              Admin Access
-            </Link>
             <Link href="/blog" className="hover:text-primary transition-colors">
               Blog
             </Link>

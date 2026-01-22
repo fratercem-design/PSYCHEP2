@@ -1,6 +1,7 @@
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthConfig } from "next-auth";
+import { isAllowedAdminEmail } from "@/lib/auth-utils";
 
 export const authConfig = {
   pages: {
@@ -18,12 +19,14 @@ export const authConfig = {
         // Use environment variables for admin credentials
         const adminUsername = process.env.ADMIN_USERNAME;
         const adminPassword = process.env.ADMIN_PASSWORD;
+        const adminEmail = process.env.ADMIN_FALLBACK_EMAIL;
         
         if (credentials?.username === adminUsername && credentials?.password === adminPassword) {
           return {
             id: "1",
             name: "Admin",
-            email: "admin@psycheverse.org",
+            // Fallback email must be set in env vars to work with allowlist
+            email: adminEmail || "admin-fallback@localhost",
             role: "admin",
             staffId: 1
           };
@@ -33,6 +36,10 @@ export const authConfig = {
     })
   ],
   callbacks: {
+    async signIn({ user }) {
+      // Only allow sign-in if email is allowlisted
+      return isAllowedAdminEmail(user?.email);
+    },
     async session({ session, token }) {
       if (session.user && token.role) {
         // @ts-expect-error -- session.user is not extended with role

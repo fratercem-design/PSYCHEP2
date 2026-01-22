@@ -1,3 +1,5 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -32,6 +34,12 @@ const nextConfig = {
       },
     ],
   },
+  reactCompiler: true,
+  turbopack: {
+    // Explicitly set project root to avoid lockfile confusion
+    root: path.join(__dirname),
+  },
+  outputFileTracingRoot: path.join(__dirname),
 };
 
 module.exports = nextConfig;
