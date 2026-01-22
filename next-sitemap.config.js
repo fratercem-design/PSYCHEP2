@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://streameraura.com',
+  siteUrl: 'https://psycheverse.org',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: ['/admin/*'],
