@@ -4,7 +4,7 @@ Allow: /
 Disallow: /admin
 
 # Host
-Host: https://streameraura.com
+Host: https://psycheverse.org
 
 # Sitemaps
-Sitemap: https://streameraura.com/sitemap.xml
+Sitemap: https://psycheverse.org/sitemap.xml
