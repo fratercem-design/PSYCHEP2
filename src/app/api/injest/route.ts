@@ -39,6 +39,9 @@ export async function GET() {
       const dataToUpdate = {
         isLive: liveDetails.isLive,
         thumbnailUrl: liveDetails.isLive ? liveDetails.thumbnailUrl : null,
+        title: liveDetails.isLive ? liveDetails.title : null,
+        viewerCount: liveDetails.isLive ? liveDetails.viewerCount : 0,
+        startedAt: liveDetails.isLive ? liveDetails.startedAt : null,
         updatedAt: new Date(),
       };
 
