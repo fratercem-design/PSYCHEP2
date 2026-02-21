@@ -11,6 +11,7 @@ interface StreamerCardProps {
   isLive: boolean;
   thumbnailUrl?: string | null;
   avatarUrl?: string | null;
+  viewerCount?: number;
   tags: string[];
 }
 
@@ -21,6 +22,7 @@ export function StreamerCard({
   isLive,
   thumbnailUrl,
   avatarUrl,
+  viewerCount,
   tags,
 }: StreamerCardProps) {
   // Filter out known bad YouTube thumbnails
@@ -78,15 +80,25 @@ export function StreamerCard({
           <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-destructive text-destructive-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-lg animate-pulse shadow-destructive/50">
             <Radio className="w-3 h-3" />
             LIVE
+            {viewerCount && viewerCount > 0 && (
+              <span className="ml-1 text-[10px] opacity-90">
+                {viewerCount.toLocaleString()}
+              </span>
+            )}
           </div>
         )}
-        
+
         {/* Platform Badge */}
-        {platform.toLowerCase() === 'youtube' && (
-          <div className="absolute bottom-3 right-3 w-8 h-8 bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/10">
-            {/* <Image src="/images/youtube-icon.png" alt="YouTube" width={20} height={20} /> */}
-          </div>
-        )}
+        <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/80 backdrop-blur-sm rounded-full flex items-center gap-1 border border-white/10">
+          <span className={cn(
+            "text-[10px] font-bold uppercase tracking-wider",
+            platform.toLowerCase() === 'youtube' && "text-red-500",
+            platform.toLowerCase() === 'kick' && "text-green-400",
+            platform.toLowerCase() === 'twitch' && "text-purple-400",
+          )}>
+            {platform}
+          </span>
+        </div>
       </div>
 
       {/* Content Area */}

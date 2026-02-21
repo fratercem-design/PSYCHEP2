@@ -32,6 +32,26 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.kick.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'files.kick.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'kick.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static-cdn.jtvnw.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'clips-media-assets2.twitch.tv',
+      },
     ],
   },
   reactCompiler: true,

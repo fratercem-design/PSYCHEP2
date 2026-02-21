@@ -20,12 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const liveStreamers = streamers.filter((s) => s.liveState?.isLive);
   const liveCount = liveStreamers.length;
 
-  let title = "StreamerAura - Discover new streamers";
-  let description = "A curated list of up-and-coming streamers. Find your next favorite creator.";
-  
+  let title = "Psycheverse - The Streamer Hub";
+  let description = "A curated directory of streamers from the Psycheverse community. Catch the signal.";
+
   if (liveCount > 0) {
     const streamerNames = liveStreamers.map(s => s.displayName).slice(0, 3).join(', ');
-    title = `🔴 ${liveCount} Streamer${liveCount > 1 ? 's' : ''} are Live! | StreamerAura`;
+    title = `🔴 ${liveCount} Live Now | Psycheverse`;
     description = `Live now: ${streamerNames}${liveCount > 3 ? ' and more' : ''}. Tune in before the signal fades.`;
   }
 
@@ -36,13 +36,13 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       type: "website",
-      url: "https://streameraura.com",
+      url: "https://psycheverse.org",
       images: [
         {
-          url: "https://streameraura.com/og-image.png", // Replace with your actual OG image URL
+          url: "https://psycheverse.org/og-image.png",
           width: 1200,
           height: 630,
-          alt: "StreamerAura",
+          alt: "Psycheverse",
         },
       ],
     },
@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://streameraura.com/og-image.png"], // Replace with your actual OG image URL
+      images: ["https://psycheverse.org/og-image.png"],
     },
   };
 }

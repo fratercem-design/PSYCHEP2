@@ -81,6 +81,7 @@ export async function LiveGrid() {
             isLive={isLive}
             thumbnailUrl={liveState?.thumbnailUrl}
             avatarUrl={streamer.avatarUrl}
+            viewerCount={liveState?.viewerCount ?? undefined}
             tags={streamer.tags.map(t => t.tag.name)}
           />
         );
