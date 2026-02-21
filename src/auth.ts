@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import { db } from "./db";
-import { users, staffUsers } from "./db/schema";
+import { users, staffUsers, psycheTransactions } from "./db/schema";
 import { eq } from "drizzle-orm";
 import { authConfig } from "./auth.config";
 
@@ -31,7 +31,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             // @ts-expect-error - custom properties
             user.tier = existing.tier;
           } else {
-            // Create new public user
+            // Create new public user with welcome bonus
+            const WELCOME_BONUS = 50;
             const userId = crypto.randomUUID();
             await db.insert(users).values({
               id: userId,
@@ -39,8 +40,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               email: user.email,
               image: user.image ?? null,
               tier: "unmarked",
-              psycheBalance: 0,
+              psycheBalance: WELCOME_BONUS,
               reputationScore: 0,
+            });
+            // Record welcome bonus transaction
+            await db.insert(psycheTransactions).values({
+              userId,
+              amount: WELCOME_BONUS,
+              txType: "earn",
+              source: "system",
+              description: "Welcome to The World — here's your first PSYCHE",
             });
             user.id = userId;
             // @ts-expect-error - custom properties

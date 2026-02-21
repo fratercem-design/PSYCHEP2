@@ -65,6 +65,12 @@ export const users = pgTable("users", {
   psycheBalance: integer("psyche_balance").default(0).notNull(),
   reputationScore: integer("reputation_score").default(0).notNull(),
   lastActive: timestamp("last_active", { withTimezone: true }),
+  // Stripe membership
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
+  subscriptionStatus: text("subscription_status"),
+  subscriptionTier: text("subscription_tier"),
+  subscriptionExpiresAt: timestamp("subscription_expires_at", { withTimezone: true }),
 });
 
 

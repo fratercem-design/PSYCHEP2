@@ -45,9 +45,9 @@ export const metadata: Metadata = {
 const navLinks = [
   { href: "/directory", label: "Directory" },
   { href: "/exchange", label: "Exchange" },
+  { href: "/membership", label: "Membership" },
+  { href: "/vault", label: "Vault" },
   { href: "/blog", label: "Blog" },
-  { href: "/submit", label: "Submit" },
-  { href: "/advertise", label: "Advertise" },
 ];
 
 export default async function RootLayout({
@@ -141,8 +141,10 @@ export default async function RootLayout({
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li><Link href="/directory" className="hover:text-primary transition-colors">Creator Directory</Link></li>
                   <li><Link href="/exchange" className="hover:text-primary transition-colors">Signal Exchange</Link></li>
+                  <li><Link href="/membership" className="hover:text-primary transition-colors">Membership</Link></li>
+                  <li><Link href="/vault" className="hover:text-primary transition-colors">The Vault</Link></li>
                   <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-                  <li><Link href="/submit" className="hover:text-primary transition-colors">Submit Your Signal</Link></li>
+                  <li><Link href="/submit" className="hover:text-primary transition-colors">Submit</Link></li>
                   <li><Link href="/advertise" className="hover:text-primary transition-colors">Advertise</Link></li>
                 </ul>
               </div>
