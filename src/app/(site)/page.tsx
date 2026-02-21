@@ -53,9 +53,38 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Psycheverse",
+  alternateName: "Cult of Psyche — The World",
+  url: "https://psycheverse.org",
+  description: "The living hub of the Cult of Psyche. Discover creators, catch live signals, and ascend through The World.",
+  publisher: {
+    "@type": "Organization",
+    name: "Cult of Psyche",
+    url: "https://cultofpsyche.com",
+    sameAs: [
+      "https://cultcodex.me",
+      "https://psycheverse.org",
+    ],
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://psycheverse.org/directory?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default async function Home() {
   return (
     <div className="bg-background">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero Banner */}
       <section className="py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

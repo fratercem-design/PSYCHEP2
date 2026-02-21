@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import Script from "next/script";
 import "../globals.css";
 import Link from "next/link";
-import Image from "next/image";
 import { auth } from "@/auth";
 import { AuthButton } from "@/components/AuthButton";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space",
@@ -61,6 +63,16 @@ export default async function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-background text-foreground font-sans`}
         suppressHydrationWarning
       >
+        {/* Google Analytics */}
+        {GA_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
+
         {/* Navigation */}
         <header className="bg-background/80 backdrop-blur-sm border-b border-secondary/10 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
