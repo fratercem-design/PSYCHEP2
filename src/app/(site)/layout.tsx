@@ -57,6 +57,8 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   const isLoggedIn = !!session?.user;
+  const userName = session?.user?.name;
+  const username = (session?.user as { username?: string } | undefined)?.username;
 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
@@ -107,7 +109,7 @@ export default async function RootLayout({
                 >
                   The Library
                 </a>
-                <AuthButton isLoggedIn={isLoggedIn} className="bg-primary/10 text-primary hover:bg-primary/20" />
+                <AuthButton isLoggedIn={isLoggedIn} userName={userName} username={username} className="bg-primary/10 text-primary hover:bg-primary/20" />
               </div>
             </div>
           </div>
