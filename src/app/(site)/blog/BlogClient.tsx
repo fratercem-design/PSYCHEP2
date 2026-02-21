@@ -27,7 +27,7 @@ export function BlogClient({ initialPosts, sidebar }: BlogClientProps) {
   return (
     <main className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">Psycheverse Blog</h1>
+        <h1 className="text-4xl font-bold">Transmissions</h1>
         <button
           onClick={() => setShowSubmitForm(!showSubmitForm)}
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"

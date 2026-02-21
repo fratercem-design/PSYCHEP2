@@ -44,15 +44,15 @@ export default function AdvertisePage() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Advertise with Us</h1>
-      
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-2">Banner Ad Subscription</h2>
-        <p className="text-gray-700 mb-4">
-          Get your banner ad displayed on our platform for only $5/month.
+      <h1 className="text-3xl font-bold mb-6 text-foreground">Amplify Your Signal</h1>
+
+      <div className="bg-secondary/5 border border-secondary/20 rounded-lg p-6 mb-6">
+        <h2 className="text-xl font-semibold mb-2 text-foreground">Banner Placement</h2>
+        <p className="text-muted-foreground mb-4">
+          Get your banner displayed across The World for only $5/month.
         </p>
-        <ul className="text-sm text-gray-600 space-y-1">
-          <li>• Rotating banner placement</li>
+        <ul className="text-sm text-muted-foreground space-y-1">
+          <li>• Rotating banner placement across all pages</li>
           <li>• 5-second rotation interval</li>
           <li>• Detailed analytics and click tracking</li>
           <li>• Automatic renewal</li>
@@ -61,7 +61,7 @@ export default function AdvertisePage() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="title" className="block text-sm font-medium text-muted-foreground mb-1">
             Ad Title
           </label>
           <input
@@ -70,13 +70,13 @@ export default function AdvertisePage() {
             required
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 bg-card border border-secondary/30 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Your ad title"
           />
         </div>
 
         <div>
-          <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="imageUrl" className="block text-sm font-medium text-muted-foreground mb-1">
             Image URL
           </label>
           <input
@@ -85,16 +85,16 @@ export default function AdvertisePage() {
             required
             value={formData.imageUrl}
             onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 bg-card border border-secondary/30 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="https://example.com/your-banner-image.jpg"
           />
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Recommended size: 1200x400px (3:1 ratio)
           </p>
         </div>
 
         <div>
-          <label htmlFor="linkUrl" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="linkUrl" className="block text-sm font-medium text-muted-foreground mb-1">
             Destination URL
           </label>
           <input
@@ -103,7 +103,7 @@ export default function AdvertisePage() {
             required
             value={formData.linkUrl}
             onChange={(e) => setFormData({ ...formData, linkUrl: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 bg-card border border-secondary/30 text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="https://your-website.com"
           />
         </div>
@@ -111,13 +111,13 @@ export default function AdvertisePage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-primary text-primary-foreground py-3 px-4 rounded-md hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
         >
           {loading ? 'Processing...' : 'Subscribe for $5/month'}
         </button>
       </form>
 
-      <div className="mt-8 text-center text-sm text-gray-600">
+      <div className="mt-8 text-center text-sm text-muted-foreground">
         <p>By subscribing, you agree to our terms of service and advertising policies.</p>
       </div>
     </div>

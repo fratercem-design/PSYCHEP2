@@ -38,9 +38,9 @@ export const NewsletterSignup = () => {
 
   return (
     <div className="bg-midnight/50 border-2 border-hyper-violet rounded-lg p-6 max-w-md mx-auto mt-12 shadow-lg shadow-hyper-violet/20">
-      <h3 className="text-xl font-bold text-neo-mint mb-2">Join the Psycheverse</h3>
+      <h3 className="text-xl font-bold text-neo-mint mb-2">Enter the Circle</h3>
       <p className="text-fog mb-4 text-sm">
-        Get updates on new streamers, features, and events.
+        Receive signals from The World — new creators, rituals, events, and transmissions.
       </p>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input

@@ -41,10 +41,10 @@ export default function SubmitPage() {
           <Image src="/images/submit-your-stream.jpg" alt="Submit Your Stream to Psycheverse" width={600} height={150} />
         </div>
         <h1 className="text-4xl font-bold text-center mb-8 text-hyper-violet">
-        Submit Your Channel
+        Submit Your Signal
       </h1>
       <p className="text-center text-lg text-fog mb-12 max-w-2xl mx-auto">
-        Want to be featured on Psycheverse? Fill out the form below. We are looking for IRL streamers who align with our vision of a connected, vibrant community. Submissions are reviewed by our team.
+        Want to be featured in The World? Fill out the form below. We seek creators who align with the Circle&apos;s vision — authentic, vibrant, community-driven. Submissions are reviewed by the Council.
       </p>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-midnight/50 p-8 rounded-lg border border-hyper-violet/20">
         <div className="mb-6">
