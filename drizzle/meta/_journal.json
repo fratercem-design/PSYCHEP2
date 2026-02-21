@@ -57,6 +57,13 @@
       "when": 1768942375987,
       "tag": "0007_glossy_blizzard",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1771699151933,
+      "tag": "0008_slimy_sasquatch",
+      "breakpoints": true
     }
   ]
 }

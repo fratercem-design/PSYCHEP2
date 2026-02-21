@@ -40,12 +40,31 @@ export const streamers = pgTable("streamers", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const memberTierEnum = pgEnum("member_tier", [
+  "unmarked",
+  "initiate",
+  "acolyte",
+  "seeker",
+  "adept",
+  "keeper",
+  "architect",
+]);
+
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
   name: text("name"),
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+  // Profile fields
+  username: text("username").unique(),
+  bio: text("bio"),
+  socialLinks: jsonb("social_links").$type<Record<string, string>>(),
+  // PSYCHE economy
+  tier: memberTierEnum("tier").default("unmarked").notNull(),
+  psycheBalance: integer("psyche_balance").default(0).notNull(),
+  reputationScore: integer("reputation_score").default(0).notNull(),
+  lastActive: timestamp("last_active", { withTimezone: true }),
 });
 
 
@@ -237,6 +256,79 @@ export const blogSubmissions = pgTable("blog_submissions", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+// ── PSYCHE Economy Tables ──
+
+export const txTypeEnum = pgEnum("tx_type", ["earn", "spend", "transfer", "burn"]);
+export const txSourceEnum = pgEnum("tx_source", [
+  "quest",
+  "ritual",
+  "login",
+  "referral",
+  "content",
+  "moderation",
+  "purchase",
+  "signal_exchange",
+  "boost",
+  "transfer",
+  "system",
+]);
+
+export const psycheTransactions = pgTable("psyche_transactions", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  amount: integer("amount").notNull(),
+  txType: txTypeEnum("tx_type").notNull(),
+  source: txSourceEnum("source").notNull(),
+  description: text("description"),
+  relatedId: text("related_id"), // generic FK to quest/promo/etc
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
+// ── Signal Exchange (Promos) ──
+
+export const promoStatusEnum = pgEnum("promo_status", ["pending", "approved", "rejected", "featured", "expired"]);
+export const promoCategoryEnum = pgEnum("promo_category", [
+  "channel",
+  "project",
+  "art",
+  "music",
+  "service",
+  "event",
+  "other",
+]);
+
+export const promos = pgTable("promos", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  url: text("url").notNull(),
+  imageUrl: text("image_url"),
+  category: promoCategoryEnum("category").default("other").notNull(),
+  status: promoStatusEnum("status").default("pending").notNull(),
+  stakePsyche: integer("stake_psyche").default(20).notNull(),
+  votesUp: integer("votes_up").default(0).notNull(),
+  votesDown: integer("votes_down").default(0).notNull(),
+  featuredAt: timestamp("featured_at", { withTimezone: true }),
+  featuredUntil: timestamp("featured_until", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const promoVotes = pgTable(
+  "promo_votes",
+  {
+    userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+    promoId: integer("promo_id").notNull().references(() => promos.id, { onDelete: "cascade" }),
+    direction: integer("direction").notNull(), // 1 = up, -1 = down
+    weight: integer("weight").default(1).notNull(), // based on tier
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.userId, t.promoId] }),
+  })
+);
+
 // Relations
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -244,6 +336,9 @@ export const usersRelations = relations(users, ({ many }) => ({
   comments: many(blogComments),
   tags: many(blogPostTags),
   creators: many(blogPostCreators),
+  psycheTransactions: many(psycheTransactions),
+  promos: many(promos),
+  promoVotes: many(promoVotes),
 }));
 
 export const blogPostTagsRelations = relations(blogPostTags, ({ one }) => ({
@@ -337,4 +432,30 @@ export const tagsRelations = relations(tags, ({ many }) => ({
 
 export const adsRelations = relations(ads, () => ({
   // Ads table currently has no foreign‐key relations to other tables
+}));
+
+export const psycheTransactionsRelations = relations(psycheTransactions, ({ one }) => ({
+  user: one(users, {
+    fields: [psycheTransactions.userId],
+    references: [users.id],
+  }),
+}));
+
+export const promosRelations = relations(promos, ({ one, many }) => ({
+  user: one(users, {
+    fields: [promos.userId],
+    references: [users.id],
+  }),
+  votes: many(promoVotes),
+}));
+
+export const promoVotesRelations = relations(promoVotes, ({ one }) => ({
+  user: one(users, {
+    fields: [promoVotes.userId],
+    references: [users.id],
+  }),
+  promo: one(promos, {
+    fields: [promoVotes.promoId],
+    references: [promos.id],
+  }),
 }));

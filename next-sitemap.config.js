@@ -18,6 +18,7 @@ module.exports = {
   },
   additionalPaths: async () => [
     { loc: '/directory', changefreq: 'hourly', priority: 0.9 },
+    { loc: '/exchange', changefreq: 'daily', priority: 0.8 },
     { loc: '/blog', changefreq: 'daily', priority: 0.8 },
     { loc: '/submit', changefreq: 'monthly', priority: 0.6 },
     { loc: '/advertise', changefreq: 'monthly', priority: 0.5 },
