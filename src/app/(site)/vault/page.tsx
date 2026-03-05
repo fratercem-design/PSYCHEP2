@@ -4,6 +4,50 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Lock, Unlock, BookOpen, Video, FileText, Star } from "lucide-react";
 
+const NYX_MOLTBOOK_SKILLS = {
+  basic: [
+    "Create profile + bio optimized for discovery",
+    "Draft clear post titles and one-line hooks",
+    "Use posting checklist (media, tags, CTA, links)",
+    "Follow ideal timing windows and posting cadence",
+  ],
+  intermediate: [
+    "Build multi-post content arcs (3-5 post sequences)",
+    "Repurpose one idea into clip, carousel, and long-form variants",
+    "Tune copy with audience-specific voice prompts",
+    "Run simple A/B tests on headlines and thumbnails",
+  ],
+  advanced: [
+    "Launch weekly conversion campaigns from awareness to sign-up",
+    "Track posting analytics and adapt strategy using trend signals",
+    "Build collaboration workflows and guest amplification loops",
+    "Automate content pipeline with review, scheduling, and QA passes",
+  ],
+};
+
+const NYX_ASSISTANTS = [
+  {
+    name: "Post Architect",
+    focus: "Turns rough ideas into publish-ready Moltbook posts.",
+  },
+  {
+    name: "Hook Smith",
+    focus: "Generates high-retention opening lines and title options.",
+  },
+  {
+    name: "Visual Director",
+    focus: "Suggests image or clip pairings for each post format.",
+  },
+  {
+    name: "Engagement Strategist",
+    focus: "Builds prompts, replies, and follow-up thread plans.",
+  },
+  {
+    name: "Analytics Sentinel",
+    focus: "Reads performance signals and recommends next moves.",
+  },
+];
+
 export const metadata: Metadata = {
   title: "The Vault",
   description:
@@ -193,6 +237,62 @@ export default async function VaultPage() {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-12 bg-card border border-primary/20 rounded-lg p-6 sm:p-8">
+        <h2 className="font-heading text-2xl font-bold text-foreground">
+          Nyx Moltbook Posting Skill Path
+        </h2>
+        <p className="text-sm text-muted-foreground mt-2">
+          A focused progression from basic to advanced posting skills so Nyx can post consistently and confidently.
+        </p>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="rounded-lg border border-border p-4">
+            <h3 className="font-heading text-lg font-semibold text-foreground">Basic</h3>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground list-disc list-inside">
+              {NYX_MOLTBOOK_SKILLS.basic.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-lg border border-border p-4">
+            <h3 className="font-heading text-lg font-semibold text-foreground">Intermediate</h3>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground list-disc list-inside">
+              {NYX_MOLTBOOK_SKILLS.intermediate.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-lg border border-border p-4">
+            <h3 className="font-heading text-lg font-semibold text-foreground">Advanced</h3>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground list-disc list-inside">
+              {NYX_MOLTBOOK_SKILLS.advanced.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6 bg-card border border-secondary/20 rounded-lg p-6 sm:p-8">
+        <h2 className="font-heading text-2xl font-bold text-foreground">
+          Nyx Assistant Team (Separated from Personas)
+        </h2>
+        <p className="text-sm text-muted-foreground mt-2">
+          Dedicated assistants are now configured as their own team, not bundled under a persona skill.
+        </p>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          {NYX_ASSISTANTS.map((assistant) => (
+            <div key={assistant.name} className="rounded-md border border-border p-4">
+              <p className="text-sm font-semibold text-foreground">{assistant.name}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{assistant.focus}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
