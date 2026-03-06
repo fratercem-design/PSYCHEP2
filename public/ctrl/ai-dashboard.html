@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTRL — AI Operations Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-0: #060b14;
+      --bg-1: #0a1220;
+      --bg-2: #101a2b;
+      --panel: rgba(14, 23, 37, 0.78);
+      --panel-solid: #0f1a2b;
+      --text: #c7d8ef;
+      --text-soft: #8ea8cc;
+      --heading: #eaf6ff;
+      --cyan: #4cf4ff;
+      --cyan-soft: rgba(76, 244, 255, 0.34);
+      --magenta: #ff4edb;
+      --green: #4effb4;
+      --yellow: #ffe066;
+      --red: #ff6b6b;
+      --border: rgba(120, 205, 255, 0.25);
+      --glow: 0 0 0 1px var(--cyan-soft), 0 0 24px rgba(76, 244, 255, 0.15);
+      --sidebar-w: 62px;
+      --feed-w: 272px;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Outfit, sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(76, 244, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 90% 80%, rgba(255, 78, 219, 0.08), transparent 30%),
+        linear-gradient(160deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(100, 220, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 220, 255, 0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .layout { display: flex; min-height: 100vh; }
+    .nav {
+      width: var(--sidebar-w); position: fixed; inset: 0 auto 0 0; z-index: 20;
+      border-right: 1px solid var(--border);
+      background: rgba(6, 11, 20, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 14px 8px;
+    }
+    .logo { font-family: Orbitron, sans-serif; color: var(--cyan); font-size: 18px; margin-bottom: 8px; }
+    .nav a {
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      color: var(--text-soft); text-decoration: none; border: 1px solid transparent; font-size: 18px;
+      transition: .2s ease;
+    }
+    .nav a:hover, .nav a.active { color: var(--heading); border-color: var(--cyan-soft); box-shadow: var(--glow); background: rgba(76, 244, 255, 0.08); }
+    .content-wrap { margin-left: var(--sidebar-w); margin-right: var(--feed-w); width: calc(100% - var(--sidebar-w) - var(--feed-w)); padding: 24px; }
+    .feed {
+      width: var(--feed-w); position: fixed; right: 0; top: 0; bottom: 0; border-left: 1px solid var(--border);
+      background: rgba(8, 14, 24, 0.8); backdrop-filter: blur(8px); padding: 22px 16px; overflow: auto;
+    }
+    .title { font-family: Orbitron, sans-serif; color: var(--heading); letter-spacing: 1px; margin: 0 0 8px; }
+    .sub { color: var(--text-soft); margin-bottom: 16px; }
+    .section { margin-bottom: 20px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--glow);
+      padding: 14px;
+    }
+    .brief { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .metric { background: rgba(10, 22, 36, 0.85); border: 1px solid rgba(100, 190, 255, 0.25); border-radius: 10px; padding: 10px; }
+    .label { color: var(--text-soft); font-size: 12px; text-transform: uppercase; }
+    .value { font-family: "JetBrains Mono", monospace; font-size: 18px; margin-top: 6px; color: var(--heading); }
+    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    button { background: rgba(76, 244, 255, 0.1); color: var(--heading); border: 1px solid var(--cyan-soft); border-radius: 9px; padding: 8px 10px; cursor: pointer; }
+    .social-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .live-badge { color: var(--green); font-size: 12px; font-family: "JetBrains Mono", monospace; display:none; }
+    .spark { width: 100%; height: 52px; }
+    .agent-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
+    .progress { height: 7px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .progress > span { display: block; height: 100%; background: linear-gradient(90deg,var(--cyan),var(--magenta)); }
+    .kanban { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
+    .col { background: rgba(8, 16, 28, 0.8); border: 1px dashed rgba(130,200,255,0.3); border-radius: 10px; padding: 10px; min-height: 132px; }
+    .chip { padding: 7px 8px; background: rgba(76,244,255,0.08); border: 1px solid var(--cyan-soft); border-radius: 8px; margin-bottom: 8px; font-size: 12px; }
+    .sop-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .fade-up { opacity: 0; transform: translateY(14px); animation: fadeUp .55s forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .feed-item { border-left: 2px solid var(--cyan-soft); padding: 0 0 10px 10px; margin-bottom: 10px; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+    @media (max-width: 1400px) { .social-grid,.agent-grid,.kanban,.sop-grid{grid-template-columns: repeat(2,1fr);} .brief{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <nav class="nav">
+    <div class="logo">C</div>
+    <a class="active" href="/ctrl/ai-dashboard.html" title="Overview">⌂</a>
+    <a href="/ctrl/research.html" title="Research">⌕</a>
+    <a href="/ctrl/pipeline.html" title="Pipeline">▤</a>
+    <a href="/ctrl/performance.html" title="Performance">◔</a>
+    <a href="/ctrl/agents.html" title="Agents">⚙</a>
+    <a href="/ctrl/clients.html" title="Clients">☰</a>
+  </nav>
+  <main class="content-wrap">
+    <h1 class="title fade-up" style="animation-delay:.05s">CTRL // Overview</h1>
+    <div class="sub fade-up" style="animation-delay:.1s">AI Ops command center</div>
+
+    <section class="section card fade-up" style="animation-delay:.15s">
+      <div class="header-row"><h3 class="title" style="font-size:16px">Today's Briefing</h3></div>
+      <div class="brief">
+        <div class="metric"><div class="label">Scheduled Posts</div><div class="value" id="scheduledPosts">12</div></div>
+        <div class="metric"><div class="label">Scripts Due Today</div><div class="value" id="scriptsDue">4</div></div>
+        <div class="metric"><div class="label">Top Performing Post</div><div class="value" id="topPost">#Mindhack-17</div></div>
+      </div>
+    </section>
+
+    <section class="section card fade-up" style="animation-delay:.2s">
+      <div class="header-row">
+        <h3 class="title" style="font-size:16px">Social Performance</h3>
+        <button id="refreshLiveBtn">↻ Refresh Live Data</button>
+      </div>
+      <div class="social-grid">
+        <div class="metric" id="tiktokCard"><div class="label">TikTok <span class="live-badge">● LIVE</span></div><div class="value mono" id="tiktokFollowers">--</div><svg class="spark" id="tiktokSpark"></svg></div>
+        <div class="metric" id="instagramCard"><div class="label">Instagram <span class="live-badge">● LIVE</span></div><div class="value mono" id="instagramFollowers">--</div><svg class="spark" id="instagramSpark"></svg></div>
+        <div class="metric" id="youtubeCard"><div class="label">YouTube <span class="live-badge">● LIVE</span></div><div class="value mono" id="youtubeSubscribers">--</div><svg class="spark" id="youtubeSpark"></svg></div>
+      </div>
+      <div class="sub" id="lastRefresh">Last refresh: never</div>
+    </section>
+
+    <section class="section card fade-up" style="animation-delay:.25s">
+      <h3 class="title" style="font-size:16px">AI Team</h3>
+      <div class="agent-grid" id="agentGrid"></div>
+    </section>
+
+    <section class="section card fade-up" style="animation-delay:.3s">
+      <h3 class="title" style="font-size:16px">Content Pipeline</h3>
+      <div class="kanban">
+        <div class="col"><b>Ideas</b><div class="chip">Neural Focus Stack</div></div>
+        <div class="col"><b>Scripting</b><div class="chip">AI Cold Open Sequence</div></div>
+        <div class="col"><b>Editing</b><div class="chip">Dopamine Loop Episode</div></div>
+        <div class="col"><b>Scheduled</b><div class="chip">Launch Teaser #03</div></div>
+        <div class="col"><b>Published</b><div class="chip">Habit Mutation Reel</div></div>
+      </div>
+    </section>
+
+    <section class="section card fade-up" style="animation-delay:.35s">
+      <h3 class="title" style="font-size:16px">SOP Library</h3>
+      <div class="sop-grid">
+        <div class="metric"><div class="label">Trend Scan Automation</div><button>Run SOP</button></div>
+        <div class="metric"><div class="label">Caption Variant Generator</div><button>Run SOP</button></div>
+        <div class="metric"><div class="label">Cross-post Scheduler</div><button>Run SOP</button></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="feed">
+    <h3 class="title" style="font-size:16px">Live Activity Feed</h3>
+    <div id="feed"></div>
+  </aside>
+</div>
+<script>
+const AGENTS = [
+  ['Trend Scout', 'Collecting hooks', 72],
+  ['ScriptSmith', 'Drafting scripts', 58],
+  ['EditPilot', 'Rendering cuts', 86],
+  ['PublishBot', 'Queueing posts', 41],
+  ['InsightCore', 'Analyzing performance', 67],
+];
+const feedEntries = [
+  'Script #882 moved to Editing',
+  'YouTube post gained +2.3% CTR',
+  'Research captured 12 new ideas',
+  'Agent ScriptSmith completed draft',
+  'Client Atlas approved campaign'
+];
+
+function drawSparkline(id, values) {
+  const el = document.getElementById(id);
+  const w = 280, h = 52, p = 5;
+  if (!values || values.length < 2) { el.innerHTML = ''; return; }
+  const min = Math.min(...values), max = Math.max(...values);
+  const xStep = (w - p * 2) / (values.length - 1);
+  const yScale = (v) => h - p - ((v - min) / (max - min || 1)) * (h - p * 2);
+  const points = values.map((v, i) => `${p + i * xStep},${yScale(v)}`).join(' ');
+  el.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  el.innerHTML = `<polyline fill="none" stroke="var(--cyan)" stroke-width="2" points="${points}"/>`;
+}
+
+function setLoading(cardId, loading) {
+  const card = document.getElementById(cardId);
+  card.style.opacity = loading ? '0.55' : '1';
+}
+
+function renderAgents(){
+  const grid=document.getElementById('agentGrid');
+  grid.innerHTML = AGENTS.map(([name,status,p]) => `<div class="metric"><div class="label">${name}</div><div>${status}</div><div class="progress"><span style="width:${p}%"></span></div><div class="mono">${p}%</div></div>`).join('');
+}
+function renderFeed(){
+  document.getElementById('feed').innerHTML = feedEntries.map((f,i)=>`<div class="feed-item fade-up" style="animation-delay:${0.1+i*0.07}s"><div>${f}</div><div class="label mono">${new Date(Date.now()-i*12*60000).toLocaleTimeString()}</div></div>`).join('');
+}
+
+function applyPayload(payload, live) {
+  const tiktok = payload?.social?.tiktok || {};
+  const instagram = payload?.social?.instagram || {};
+  const youtube = payload?.social?.youtube || {};
+
+  if (typeof tiktok.followers === 'number') {
+    document.getElementById('tiktokFollowers').textContent = `${tiktok.followers.toLocaleString()} followers`;
+  }
+  if (typeof instagram.followers === 'number') {
+    document.getElementById('instagramFollowers').textContent = `${instagram.followers.toLocaleString()} followers`;
+  }
+
+  const ytPosts = youtube.posts || [];
+  document.getElementById('youtubeSubscribers').textContent = ytPosts.length ? `${(ytPosts[0].views || 0).toLocaleString()} latest views` : 'No content yet';
+
+  drawSparkline('tiktokSpark', (tiktok.posts || []).slice(0, 7).map((p) => Number(p.views || 0)).reverse());
+  drawSparkline('instagramSpark', (instagram.posts || []).slice(0, 7).map((p) => Number(p.views || 0)).reverse());
+  drawSparkline('youtubeSpark', ytPosts.slice(0, 7).map((p) => Number(p.views || 0)).reverse());
+
+  if (live) document.querySelectorAll('.live-badge').forEach((b) => (b.style.display = 'inline'));
+}
+
+async function refreshAll() {
+  setLoading('tiktokCard', true); setLoading('instagramCard', true); setLoading('youtubeCard', true);
+  const cacheRaw = localStorage.getItem('ctrl_live_payload');
+  if (cacheRaw) {
+    try { applyPayload(JSON.parse(cacheRaw), false); } catch {}
+  }
+
+  try {
+    const payload = await fetch('/live/refresh', { method: 'POST' }).then((r) => r.json());
+    if (!payload.error) {
+      localStorage.setItem('ctrl_live_payload', JSON.stringify(payload));
+      localStorage.setItem('ctrl_apify_raw', JSON.stringify({
+        tiktok: [{ latestPosts: payload.social?.tiktok?.posts || [] }],
+        instagram: [{ latestPosts: payload.social?.instagram?.posts || [] }],
+      }));
+      applyPayload(payload, true);
+      const stamp = new Date(payload.updatedAt || Date.now()).toLocaleString();
+      localStorage.setItem('ctrl_last_refresh', stamp);
+      document.getElementById('lastRefresh').textContent = `Last refresh: ${stamp}`;
+    }
+  } catch (e) {
+    console.warn('Live refresh unavailable. Run through proxy.js for secure server-backed mode.', e);
+  } finally {
+    setLoading('tiktokCard', false); setLoading('instagramCard', false); setLoading('youtubeCard', false);
+  }
+}
+
+document.getElementById('refreshLiveBtn').addEventListener('click', refreshAll);
+renderAgents(); renderFeed();
+document.getElementById('lastRefresh').textContent = `Last refresh: ${localStorage.getItem('ctrl_last_refresh') || 'never'}`;
+refreshAll();
+</script>
+</body>
+</html>

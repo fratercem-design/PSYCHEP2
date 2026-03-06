@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CTRL — Performance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {--bg-0:#060b14;--bg-1:#0a1220;--bg-2:#101a2b;--panel:rgba(14,23,37,.78);--panel-solid:#0f1a2b;--text:#c7d8ef;--text-soft:#8ea8cc;--heading:#eaf6ff;--cyan:#4cf4ff;--cyan-soft:rgba(76,244,255,.34);--magenta:#ff4edb;--green:#4effb4;--yellow:#ffe066;--red:#ff6b6b;--border:rgba(120,205,255,.25);--glow:0 0 0 1px var(--cyan-soft),0 0 24px rgba(76,244,255,.15);--sidebar-w:62px;--feed-w:272px;--radius:14px;}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--text);font-family:Outfit,sans-serif;background:radial-gradient(circle at 20% 0%,rgba(76,244,255,.08),transparent 35%),radial-gradient(circle at 90% 80%,rgba(255,78,219,.08),transparent 30%),linear-gradient(160deg,var(--bg-0),var(--bg-1) 45%,var(--bg-2));min-height:100vh}
+    .nav{width:var(--sidebar-w);position:fixed;inset:0 auto 0 0;z-index:20;border-right:1px solid var(--border);background:rgba(6,11,20,.85);display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 8px}
+    .logo{font-family:Orbitron,sans-serif;color:var(--cyan);font-size:18px;margin-bottom:8px}
+    .nav a{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--text-soft);text-decoration:none;border:1px solid transparent;font-size:18px}
+    .nav a:hover,.nav a.active{color:var(--heading);border-color:var(--cyan-soft);box-shadow:var(--glow);background:rgba(76,244,255,.08)}
+    main{margin-left:var(--sidebar-w);padding:24px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--glow);padding:14px;margin-bottom:16px}
+    .title{font-family:Orbitron,sans-serif;color:var(--heading)}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;border-bottom:1px solid rgba(130,200,255,.15);text-align:left}
+    .mono{font-family:"JetBrains Mono",monospace}
+    button{background:rgba(76,244,255,.1);color:var(--heading);border:1px solid var(--cyan-soft);border-radius:8px;padding:6px 8px;cursor:pointer}
+    .topbar{display:flex;justify-content:space-between;align-items:center}
+    .status{font-size:12px;color:var(--text-soft)}
+    .live{color:var(--green);font-size:12px;font-family:"JetBrains Mono",monospace;margin-left:8px}
+  </style>
+</head>
+<body>
+<nav class="nav"><div class="logo">C</div><a href="/ctrl/ai-dashboard.html" title="Overview">⌂</a><a href="/ctrl/research.html" title="Research">⌕</a><a href="/ctrl/pipeline.html" title="Pipeline">▤</a><a class="active" href="/ctrl/performance.html" title="Performance">◔</a><a href="/ctrl/agents.html" title="Agents">⚙</a><a href="/ctrl/clients.html" title="Clients">☰</a></nav>
+<main>
+  <div class="topbar">
+    <h1 class="title">CTRL // Performance</h1>
+    <button id="refreshData">↻ Refresh Data</button>
+  </div>
+  <div class="status" id="refreshStamp">Last refresh: never</div>
+  <div id="tables"></div>
+</main>
+
+<script>
+const sample={
+  TikTok:[{title:'Mindhack 1',views:120340,engagement:'9.2%'},{title:'Mindhack 2',views:96340,engagement:'7.9%'}],
+  Instagram:[{title:'Carousel 1',views:44220,engagement:'6.8%'},{title:'Reel 1',views:70310,engagement:'8.1%'}],
+  YouTube:[{title:'Episode 1',views:32880,engagement:'5.1%'},{title:'Short 1',views:50110,engagement:'7.2%'}]
+};
+
+function sparkInline(vals){const min=Math.min(...vals),max=Math.max(...vals);const points=vals.map((v,i)=>`${i*20},${20-((v-min)/(max-min||1))*18}`).join(' ');return `<svg width='90' height='20'><polyline points='${points}' fill='none' stroke='#4cf4ff' stroke-width='2'/></svg>`;}
+function drawTable(name,rows,live){return `<div class='card'><h3 class='title' style='font-size:16px'>${name}${live?" <span class='live'>● LIVE</span>":''}</h3><table><thead><tr><th>Post</th><th>Views</th><th>Engagement</th><th>Sparkline</th><th></th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.title}</td><td class='mono'>${Number(r.views||0).toLocaleString()}</td><td>${r.engagement||'--'}</td><td>${sparkInline([r.views*.6||0,r.views*.7||0,r.views*.8||0,r.views||0])}</td><td><button class='repurpose' data-title='${r.title}'>→ Repurpose</button></td></tr>`).join('')}</tbody></table></div>`;}
+function render(data,live){document.getElementById('tables').innerHTML=[drawTable('TikTok',data.TikTok,live),drawTable('Instagram',data.Instagram,live),drawTable('YouTube',data.YouTube,live)].join('');}
+function saveRepurpose(title){const ideas=JSON.parse(localStorage.getItem('ctrl_pipeline_ideas')||'[]');ideas.push({title:`Repurpose: ${title}`,source:'performance'});localStorage.setItem('ctrl_pipeline_ideas',JSON.stringify(ideas));}
+
+document.body.addEventListener('click',e=>{if(e.target.classList.contains('repurpose')){saveRepurpose(e.target.dataset.title);e.target.textContent='Added';}});
+
+function fromServerPayload(payload){
+  const tiktokPosts=(payload?.social?.tiktok?.posts||[]).slice(0,7);
+  const instagramPosts=(payload?.social?.instagram?.posts||[]).slice(0,7);
+  const youtubePosts=(payload?.social?.youtube?.posts||[]).slice(0,7);
+  return {
+    TikTok: tiktokPosts.length ? tiktokPosts : sample.TikTok,
+    Instagram: instagramPosts.length ? instagramPosts : sample.Instagram,
+    YouTube: youtubePosts.length ? youtubePosts : sample.YouTube,
+  };
+}
+
+async function refresh(){
+  const tables=document.getElementById('tables');
+  tables.style.opacity='.55';
+
+  let data={...sample};
+  let live=false;
+
+  const cacheRaw=localStorage.getItem('ctrl_live_payload');
+  if(cacheRaw){
+    try{data=fromServerPayload(JSON.parse(cacheRaw));}catch{}
+  }
+
+  try{
+    const payload=await fetch('/live/refresh',{method:'POST'}).then(r=>r.json());
+    if(!payload.error){
+      localStorage.setItem('ctrl_live_payload',JSON.stringify(payload));
+      data=fromServerPayload(payload);
+      live=true;
+      const stamp=new Date(payload.updatedAt || Date.now()).toLocaleString();
+      localStorage.setItem('ctrl_last_refresh',stamp);
+      document.getElementById('refreshStamp').textContent=`Last refresh: ${stamp} · server-backed secure mode`;
+    }
+  }catch(err){
+    console.warn('Refresh requires proxy.js (/live/refresh).',err);
+  }
+
+  render(data,live);
+  tables.style.opacity='1';
+}
+
+document.getElementById('refreshData').onclick=refresh;
+document.getElementById('refreshStamp').textContent=`Last refresh: ${localStorage.getItem('ctrl_last_refresh') || 'never'} · server-backed secure mode`;
+render(sample,false);
+refresh();
+</script>
+</body>
+</html>
